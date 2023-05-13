@@ -1,0 +1,24 @@
+<main>
+
+  <div class="album py-4" style="background-color: #ede0d4;">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+       {{#each mascotas}}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="data:image/png;base64,{{imagen}}" alt="{{nombre}}" width="100%" height="215" >
+            <div class="card-body">
+              <p class="card-text"><b>Nombre:</b> {{nombre}}<br><b>Especie:</b> {{especie}}<br><b>Raza:</b> {{raza}}<br><b>Edad:</b> {{edad}}<br><b>Dueño:</b> {{dueno}}<br><b>Direccion:</b> {{direccion}}</p>
+                <div class="btn-group">
+                    <a href="/actualizar/{{idmascota}}" class="btn btn-primary my-2">Actualizar</a>
+                    <a href="/eliminar/{{idmascota}}" class="btn btn-danger my-2">Eliminar</a>
+                </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+</main>

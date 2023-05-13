@@ -1,0 +1,54 @@
+
+
+<form class="row g-3 mx-md-3 mt-4  needs-validation" action="/registrar" method="POST" enctype="multipart/form-data" novalidate>
+  <div class="col-md-6"><label for="nombre" class="form-label">Nombre</label>
+    <input class="form-control" type="text" name="nombre" placeholder="ej.Toby" id="nombre" required/>
+    <div class="invalid-feedback">
+        Por favor escriba el nombre de su mascota.
+      </div>
+  </div>
+  <div class="col-md-6"><label for="edad" class="form-label">Edad</label>
+    <input class="form-control" type="number" name="edad" id="edad" min="1" max="100" step="1" required/>
+    <div class="invalid-feedback">
+        Por favor introduzca la edad de su mascota.
+      </div>
+  </div>
+  
+  <div class="col-md-6"><label for="especie" class="form-label">Especie</label>
+    <input class="form-control" type="text" name="especie" placeholder="ej.Gato" id="especie" required />
+    <div class="invalid-feedback">
+        Por favor escriba la especie a la que pertenece su mascota.
+      </div>
+  </div>
+
+  <div class="col-md-6"><label for="raza" class="form-label">Raza</label>
+    <input class="form-control" type="text" name="raza" placeholder="ej.Siames" id="raza" />
+  </div>
+  <div>
+    <label for="dueno" class="form-label">Dueño:</label>
+    <input class="form-control" type="text" name="dueno" id="dueno" required/>
+    <div class="invalid-feedback">
+        Por favor introduzca su nombre.
+    </div>
+  </div>
+  <div>
+    <label for="direccion" class="form-label">Direccion</label>
+    <input class="form-control" type="text" name="direccion" id="direccion" required/>
+    <div class="invalid-feedback">
+        Por favor escriba el nombre de su mascota.
+    </div>
+  </div>
+  <div>
+  <div class="mb-3 col-md-5">
+  <label for="imagen" class="form-label">Imagen (PNG, menos de 5 MB):</label>
+  <input class="form-control" type="file" name="imagen" id="imagen" accept="image/png,image/jpg" maxlength="524288" required>
+  <div class="invalid-feedback">
+        Por favor escoja una foto de su mascota para el expediente.
+  </div>
+  </div>
+  </div>
+  <div class="mb-3 col-md-5 mx-auto text-center">
+    <button class="btn btn-primary" type="submit">Registrar</button>
+  </div>
+</form>
+

@@ -1,0 +1,30 @@
+
+<form class="row g-3 mx-md-3 mt-2 needs-validation" action="/actualizar/{{mascota.idmascota}}" method="POST" enctype="multipart/form-data" novalidate>
+  <div class="col-md-6"><label class="form-label" for="nombre">Nombre:</label>
+  <input class="form-control" type="text" name="nombre" value="{{mascota.nombre}}" id="nombre" required/>
+  </div>
+  <div class="col-md-6"><label class="form-label" for="edad">Edad:</label>
+    <input class="form-control" type="number" name="edad" value="{{mascota.edad}}" id="edad" min="1" max="100" step="1" required/>
+  </div>  
+  <div class="col-md-6"><label class="form-label" for="especie">Especie:</label>
+    <input class="form-control" type="text"  name="especie" value="{{mascota.especie}}"  id="especie" required/>
+  </div>
+  <div class="col-md-6"><label class="form-label" for="raza">Raza:</label>
+    <input class="form-control" type="text" name="raza" value="{{mascota.raza}}" id="raza" required/>
+  </div>
+
+  <div>
+    <label class="form-label" for="dueno">Dueño:</label>
+    <input class="form-control" type="text" name="dueno" value="{{mascota.dueno}}" id="dueno" required/></div>
+  <div>
+    <label class="form-label" for="direccion">Direccion:</label>
+    <input class="form-control" type="text" name="direccion" value="{{mascota.direccion}}" id="direccion required"/>
+  </div>
+  <div>
+    <label class="form-label mb-3 col-md-5" for="imagen">Imagen (PNG, menos de 5 MB):</label>
+    <input class="form-control" type="file" name="imagen" id="imagen" accept="image/png,image/jpg" maxlength="524288" />
+  </div>
+  <div class="mb-3 col-md-5 mx-auto text-center">
+    <button class="btn btn-primary" type="submit">Actualizar</button>
+  </div>
+</form>
