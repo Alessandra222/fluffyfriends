@@ -7,24 +7,6 @@ const router = Router();
 const almacenamiento = multer.memoryStorage();
 const upload = multer({ storage: almacenamiento });
 
-router.get('/chatbot', async (req, res) => {
-  const todomascotas = await Mascota.find().lean();
-  todomascotas.forEach(mascota => {
-    mascota.imagen = mascota.imagen.toString('base64');
-  });
-  res.render("chatbot", { mascotas: todomascotas });
-});
-
-router.post('/', (req, res) => {
-  const userMessage = req.body.message; // Obtener el mensaje del cuerpo de la solicitud
-
-  // Aquí puedes llamar a la función `response` del código del chatbot para obtener la respuesta
-  const botResponse = response(userMessage);
-
-  // Enviar la respuesta como JSON al cliente
-  res.json({ message: botResponse });
-});
-
 router.get("/", async (req, res) => {
   const todomascotas = await Mascota.find().lean();
   todomascotas.forEach(mascota => {
