@@ -1,18 +1,37 @@
 import { Router } from "express";
 import Mascota from "../models/Mascota";
 import multer from 'multer';
+import axios from 'axios';
 
 const router = Router();
 const almacenamiento = multer.memoryStorage();
 const upload = multer({ storage: almacenamiento });
 
+router.get('/chatbot', async (req, res) => {
+  const todomascotas = await Mascota.find().lean();
+  todomascotas.forEach(mascota => {
+    mascota.imagen = mascota.imagen.toString('base64');
+  });
+  res.render("chatbot", { mascotas: todomascotas });
+});
+
+router.post('/', (req, res) => {
+  const userMessage = req.body.message; // Obtener el mensaje del cuerpo de la solicitud
+
+  // Aquí puedes llamar a la función `response` del código del chatbot para obtener la respuesta
+  const botResponse = response(userMessage);
+
+  // Enviar la respuesta como JSON al cliente
+  res.json({ message: botResponse });
+});
+
 router.get("/", async (req, res) => {
   const todomascotas = await Mascota.find().lean();
   todomascotas.forEach(mascota => {
-  mascota.imagen = mascota.imagen.toString('base64');
+    mascota.imagen = mascota.imagen.toString('base64');
   });
   res.render("index", { mascotas: todomascotas });
-  });
+});
 
 router.get("/registrar", async (req, res) => {
   res.render("insertar");
@@ -40,12 +59,12 @@ router.post("/registrar", upload.single('imagen'), async (req, res) => {
   } else {
     direccion = req.body.direccion;
   }
-  
+
   mascota.direccion = direccion;
 
-  if(!req.file){
+  if (!req.file) {
     res.redirect("/registrar");
-  }else{
+  } else {
     mascota.imagen = req.file.buffer;
   }
   await mascota.save();
@@ -53,13 +72,13 @@ router.post("/registrar", upload.single('imagen'), async (req, res) => {
   res.redirect("/");
 });
 
-router.get("/actualizar/:idmascota", async(req, res) => {
-  const idmascota = req.params.idmascota.replace(":","");
-  const datomascota = await Mascota.findOne({"idmascota": idmascota}).lean();
-  res.render("actualizar", {mascota: datomascota});
+router.get("/actualizar/:idmascota", async (req, res) => {
+  const idmascota = req.params.idmascota.replace(":", "");
+  const datomascota = await Mascota.findOne({ "idmascota": idmascota }).lean();
+  res.render("actualizar", { mascota: datomascota });
 });
 
-router.post("/actualizar/:idmascota", upload.single('imagen'),async(req,res) =>{
+router.post("/actualizar/:idmascota", upload.single('imagen'), async (req, res) => {
   const newidmascota = req.params.idmascota;
   const newespecie = req.body.especie;
   const newnombre = req.body.nombre;
@@ -67,9 +86,9 @@ router.post("/actualizar/:idmascota", upload.single('imagen'),async(req,res) =>{
   const newedad = req.body.edad;
   const newdueno = req.body.dueno;
   const newdireccion = req.body.direccion;
-  
-  if(!req.file){
-    await Mascota.updateOne({"idmascota": newidmascota},{
+
+  if (!req.file) {
+    await Mascota.updateOne({ "idmascota": newidmascota }, {
       $set: {
         "especie": newespecie,
         "nombre": newnombre,
@@ -79,9 +98,9 @@ router.post("/actualizar/:idmascota", upload.single('imagen'),async(req,res) =>{
         "direccion": newdireccion,
       }
     });
-  }else{
+  } else {
     const newimagen = req.file.buffer;
-    await Mascota.updateOne({"idmascota": newidmascota},{
+    await Mascota.updateOne({ "idmascota": newidmascota }, {
       $set: {
         "especie": newespecie,
         "nombre": newnombre,
@@ -97,9 +116,9 @@ router.post("/actualizar/:idmascota", upload.single('imagen'),async(req,res) =>{
   res.redirect("/");
 });
 
-router.get("/eliminar/:idmascota", async(req, res) => {
-   await Mascota.findOneAndDelete({"idmascota": req.params.idmascota});
-   console.log("hola" + req.params.idmascota);
+router.get("/eliminar/:idmascota", async (req, res) => {
+  await Mascota.findOneAndDelete({ "idmascota": req.params.idmascota });
+  console.log("hola" + req.params.idmascota);
   res.redirect("/");
 });
 

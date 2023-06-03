@@ -1,0 +1,44 @@
+.btn-A{
+    background-color: #648a64;
+    color: #ffff;
+}
+
+.btn-A:hover {
+    background-color: #274127c1; 
+    color: #ffff;
+}
+
+.btn-Act{
+    background-color: #46685b;
+    color: #ffff;
+}
+
+.btn-Act:hover {
+    background-color: #2e463d; 
+    color: #ffff;
+}
+
+
+.btn-floating-xl {
+    width: 70px;
+    height: 70px;
+    font-size: 35px;
+    border-radius: 50%;
+}
+
+.chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    width: 200px;
+    padding: 20px;
+    background-color: #e1e3ac;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: none;
+  }
+  .chatbot-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
